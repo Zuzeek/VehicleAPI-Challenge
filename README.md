@@ -15,8 +15,8 @@ Vehicle Service: create Interface
 packages: 
 app.controllers
 app.service.impl  
-           .interfaces
-           .repositories 
+app.service.interfaces
+app.service.repositories 
 
 * if using @Autowired, do NOT include getters / setters for any component
 
