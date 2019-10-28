@@ -18,19 +18,19 @@ app.service.impl
            .interfaces
            .repositories 
 
-* remove getters / setters for repository in service 
+* if using @Autowired, do NOT include getters / setters for any component
 
 userStory #1
 search for vehicle by colour 
 
 userStory #2
-search by value greater than '>' and less than '<' -> higher and lower 
+search for vehicle by value greater than '>' or less than '<' -> higher and lower 
 
 userStory #3
-merge search filters into one get request -> search by colour and/or brand 
+one method for filtering vehicles by multiple filters -> search by colour and/or brand
 
 userStory #4
-merge searchByValue filter into the get request from userStory #3
+merge searchByValue filter into the filter vehicles method from userStory #3
 
 userStory #5
 add new entity: owner (name, lastName, address, etc)
