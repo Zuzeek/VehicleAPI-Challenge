@@ -40,22 +40,15 @@ public class VehicleController {
 	
 	// Get a Vehicle by: brand, colour -> filter method
 	@GetMapping("/filter")
-	public List<Vehicle> searchVehiclesByFilters(
-			@RequestParam(value ="colour", defaultValue = "") String colour, 
-			@RequestParam(value = "brand", defaultValue = "") String brand) {
-			
-		return vehicleService.filterVehicles(colour, brand); 
+	public List<Vehicle> searchVehiclesByFilters( 
+			@RequestParam(value = "brand", defaultValue = "") String brand, 
+			@RequestParam(value = "colour", defaultValue = "") String colour,
+			@RequestParam(value = "value", defaultValue = "0.00") Double value,
+			@RequestParam(value = "higher", defaultValue = "") Boolean higher) {
+		
+		return vehicleService.filterVehicles(brand, colour, value, higher); 
 	}
 	
-	// Get a Vehicle by value 
-	@GetMapping("/filter/value")
-	public List<Vehicle> searchVehicleByHigherValue(@RequestParam(value = "value", defaultValue = "") Double value, @RequestParam(value = "higher", defaultValue = "false") Boolean higher){
-		if(higher) {
-			return vehicleService.getVehicleByHigherValue(value); 
-		}
-		return vehicleService.getVehicleByLowerValue(value);
-	}
-
     // Create a new Vehicle
 	@PostMapping
 	public Vehicle createVehicle(@Valid @RequestBody Vehicle vehicle) {

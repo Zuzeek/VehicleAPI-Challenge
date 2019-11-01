@@ -14,5 +14,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 	List<Vehicle> findByValueGreaterThanEqual(Double value);
 	List<Vehicle> findByValueLessThanEqual(Double value);
 	List<Vehicle> findByBrandStartingWith(String brand);
+	List<Vehicle> getVehicleByValue(Double value);
 	
 }

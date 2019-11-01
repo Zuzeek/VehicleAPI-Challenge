@@ -69,19 +69,48 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 
 	@Override
-	public List<Vehicle> filterVehicles(String colour, String brand) {
-		List<Vehicle> vehicles = vehicleRepository.findByBrandStartingWith(brand); 
-		List<Vehicle> vehiclesToReturn = new ArrayList<>();
+	public List<Vehicle> filterVehicles(String brand, String colour, Double value, Boolean higher) {
+		List<Vehicle> filteredVehicles = getVehicleByBrand(brand); 
 		
 		if(!colour.equals("")) {
+			filteredVehicles = filterVehicleByColour(filteredVehicles, colour); 
+		}
+		
+		if(!value.equals(0.00)) {
+			filteredVehicles = filterVehicleByValue(filteredVehicles, value, higher); 
+		}
+
+		return filteredVehicles; 
+	}
+	
+	public List<Vehicle> filterVehicleByValue(List<Vehicle> vehicles, Double value, Boolean higher) {
+		List<Vehicle> vehiclesToReturn = new ArrayList<>(); 
+		
+		if(higher) {
 			for(Vehicle vehicle: vehicles) {
-				
-				if((vehicle.getColour()).startsWith(colour)) {
-					vehiclesToReturn.add(vehicle); 
+				if(vehicle.getValue() > value) {
+					vehiclesToReturn.add(vehicle);
 				}
 			}
-			return vehiclesToReturn;
 		}
-		return vehicles; 
+		else {
+			for(Vehicle vehicle: vehicles) {
+				if(vehicle.getValue() < value) {
+					vehiclesToReturn.add(vehicle);
+				}
+			}
+		}
+		return vehiclesToReturn; 
+	}
+
+	public List<Vehicle> filterVehicleByColour(List<Vehicle> vehicles, String colour){
+		List<Vehicle> vehiclesToReturn = new ArrayList<>();
+		
+		for(Vehicle vehicle: vehicles) {	
+			if((vehicle.getColour()).startsWith(colour)) {
+				vehiclesToReturn.add(vehicle); 
+			}
+		}
+		return vehiclesToReturn; 
 	}
 }
