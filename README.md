@@ -13,10 +13,10 @@ Vehicle Service: create Interface
 - remove VehicleById
 
 packages: 
-app.controllers
-app.service.impl  
-app.service.interfaces
-app.service.repositories 
+- app.controllers
+- app.service.impl  
+- app.service.interfaces
+- app.service.repositories 
 
 * if using @Autowired, do NOT include getters / setters for any component
 
