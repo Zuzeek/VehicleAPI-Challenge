@@ -13,10 +13,10 @@ Vehicle Service: create Interface
 - remove VehicleById
 
 packages: 
-app.controllers
-app.service.impl  
-app.service.interfaces
-app.service.repositories 
+- app.controllers
+- app.service.impl  
+- app.service.interfaces
+- app.service.repositories 
 
 * if using @Autowired, do NOT include getters / setters for any component
 
@@ -33,4 +33,21 @@ userStory #4
 merge searchByValue filter into the filter vehicles method from userStory #3
 
 userStory #5
-add new entity: owner (name, lastName, address, etc)
+add new entity: owner (firstName, lastName, age, address, etc)
+- model: owner 
+- controller: create, update, delete, fetch
+- repository
+- service
+- serviceImpl
+
+userStory #6
+vehicle will have an ownerId. Add vehicle list to owner -> OneToMany
+id -> vehicle class -> make it associated with owner 
+clear database
+
+userStory #7
+- when retrieving vehicles show owner object
+- when retrieving owners show list of owned vehicles
+
+userStory #8
+test with postman 
